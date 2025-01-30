@@ -6,6 +6,7 @@ import com.drifter.spring_ai_sb.services.OpenAIService;
 import com.drifter.spring_ai_sb.services.OpenAIServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,8 +18,8 @@ public class QuestionController {
         this.openAIService = openAIService;
     }
 
-    @PostMapping
-    public Answer aksQuestion(Question question) {
+    @PostMapping("/ask")
+    public Answer aksQuestion(@RequestBody Question question) {
         return openAIService.getAnswer(question);
     }
 }
