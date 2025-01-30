@@ -1,5 +1,7 @@
 package com.drifter.spring_ai_sb.services;
 
+import com.drifter.spring_ai_sb.model.Answer;
+import com.drifter.spring_ai_sb.model.Question;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
@@ -16,6 +18,8 @@ public class OpenAIServiceImpl implements OpenAIService {
         this.chatModel = chatModel;
     }
 
+
+
     @Override
     public String getAnswer(String question) {
         PromptTemplate promptTemplate = new PromptTemplate(question);
@@ -24,5 +28,15 @@ public class OpenAIServiceImpl implements OpenAIService {
         ChatResponse response = chatModel.call(prompt);
 
         return response.getResult().getOutput().getContent();
+    }
+
+    @Override
+    public Answer getAnswer(Question question) {
+        PromptTemplate promptTemplate = new PromptTemplate(question.question());
+        Prompt prompt = promptTemplate.create();
+
+        ChatResponse response = chatModel.call(prompt);
+
+        return new Answer(response.getResult().getOutput().getContent());
     }
 }
