@@ -1,6 +1,7 @@
 package com.drifter.spring_ai_sb.services;
 
 import com.drifter.spring_ai_sb.model.Answer;
+import com.drifter.spring_ai_sb.model.GetCapitalRequest;
 import com.drifter.spring_ai_sb.model.Question;
 
 public interface OpenAIService {
@@ -9,4 +10,5 @@ public interface OpenAIService {
 
     Answer getAnswer(Question question);
 
+    Answer getCapital(GetCapitalRequest getCapitalRequest);
 }

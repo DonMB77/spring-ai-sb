@@ -1,6 +1,7 @@
 package com.drifter.spring_ai_sb.controllers;
 
 import com.drifter.spring_ai_sb.model.Answer;
+import com.drifter.spring_ai_sb.model.GetCapitalRequest;
 import com.drifter.spring_ai_sb.model.Question;
 import com.drifter.spring_ai_sb.services.OpenAIService;
 import com.drifter.spring_ai_sb.services.OpenAIServiceImpl;
@@ -16,6 +17,11 @@ public class QuestionController {
 
     public QuestionController(OpenAIService openAIService) {
         this.openAIService = openAIService;
+    }
+
+    @PostMapping("/capital")
+    public Answer getCapital(@RequestBody GetCapitalRequest getCapitalRequest) {
+        return this.openAIService.getCapital(getCapitalRequest);
     }
 
     @PostMapping("/ask")
